@@ -40,6 +40,7 @@ void Simulator::loadViewer()
 
 	while (!_viewer.done()) {
 		_viewer.getCamera()->setViewMatrixAsLookAt(osg::Vec3(100.f, -100.f, 0.f), _cessnaNode->getBound().center(), osg::Z_AXIS);
+		//Collision
 		if (_cessnaNode->getBound().intersects(_truckNode->getBound())) {
 			_root->setChildValue(_cessnaNode.get(), false);
 			_root->setChildValue(_cessnaFiredNode.get(), true);
@@ -48,22 +49,3 @@ void Simulator::loadViewer()
 		_viewer.frame();
 	}
 }
-
-osg::AnimationPath* Simulator::createAnimationPath(float radius, float time)
-{
-	osg::ref_ptr<osg::AnimationPath> path =	new osg::AnimationPath;
-	path->setLoopMode(osg::AnimationPath::LOOP);
-	unsigned int numSamples = 32;
-	float delta_yaw = 2.0f * osg::PI / ((float)numSamples - 1.0f);
-	float delta_time = time / (float)numSamples;
-	for (unsigned int i = 0; i < numSamples; ++i)
-	{
-		float yaw = delta_yaw * (float)i;
-		osg::Vec3 pos(sinf(yaw) * radius, cosf(yaw) * radius, 0.0f);
-		osg::Quat rot(-yaw, osg::Z_AXIS);
-		path->insert(i,	osg::AnimationPath::ControlPoint(pos, rot)
-		);
-	}
-	return path.release();
-}
-

@@ -5,7 +5,6 @@
 #include <osgShadow/ShadowMap>
 #include <osgViewer/Viewer>
 
-//Directions - Still not in use
 class ModelController : public osgGA::GUIEventHandler
 {
 public:

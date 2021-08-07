@@ -24,6 +24,7 @@ bool ModelController::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 
 		switch (ea.getKey())
 		{
+		//directions
 		case 65361:
 			matrix *= osg::Matrix::rotate(-0.1f, osg::Z_AXIS);
 			break;
@@ -36,6 +37,7 @@ bool ModelController::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 		case 65364:
 			matrix *= osg::Matrix::rotate(0.1f, osg::X_AXIS);
 			break;
+		//airplane landing
 		case 's': {
 			matrix *= osg::Matrix::inverse(osg::Matrix::translate(osg::Vec3(-0.1f, 1.0f, 1.0f)));
 		}

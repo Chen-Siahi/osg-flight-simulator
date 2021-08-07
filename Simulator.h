@@ -21,5 +21,4 @@ public:
 		void createCessnaNode();
 		void createTruckNode();
 		void loadViewer();
-		osg::AnimationPath* createAnimationPath(float radius, float time);
 };
